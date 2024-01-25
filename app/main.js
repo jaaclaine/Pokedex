@@ -1,4 +1,4 @@
-const linkAPIMain = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+const linkAPIMain = "https://pokeapi.co/api/v2/pokemon/?limit=30";
 let pokemonList = [];
 const divPoke = document.querySelector("#pokeResult");
 
@@ -17,15 +17,15 @@ async function criarLista() {
       `https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`
     );
     infoPokemon.then(function (resultPokemon) {
-      if (!resultPokemon.evolves_from_species) {
-        let info = getBusca(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
+      let info = getBusca(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
 
-        info.then(function (itemPokemon) {
-          divPoke.innerHTML += `
-            <div style="text-align: center; justify-items: center; background: #f5f5f5; padding: 15px; margin: 10px">
-              <img src="${itemPokemon.sprites.front_default}"> <br>
+      info.then(function (itemPokemon) {
+        //console.log(itemPokemon);
+        divPoke.innerHTML += `
+            <div style="text-align: center; justify-items: center; background: #f5f5f5; padding: 15px; width: 200px">
+            <img src="${
+              itemPokemon.sprites.other.dream_world.front_default
+            }"> <br>
               <h3>${itemPokemon.name}</h3>
               ${itemPokemon.stats
                 .map((stats) => {
@@ -40,10 +40,20 @@ async function criarLista() {
                   ${resultPokemon.color.name}
             </div>
           `;
-        });
-      }
+      });
     });
   });
 }
 
 criarLista();
+
+const divCores = document.querySelector("#colors");
+function colors() {
+  getBusca("https://pokeapi.co/api/v2/pokemon-color/").then((item) => {
+    item.results.forEach(
+      (cor) =>
+        (divCores.innerHTML += `<div class="pokemonCores ${cor.name}">${cor.name}</div>`)
+    );
+  });
+}
+colors();
