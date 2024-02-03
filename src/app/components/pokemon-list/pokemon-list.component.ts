@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonListService } from '../pokemon-list.service';
+import { CommonModule } from '@angular/common';
+import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, PokemonListItemComponent],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.scss',
 })

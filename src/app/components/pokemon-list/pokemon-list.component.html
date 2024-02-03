@@ -1,1 +1,5 @@
-<p>pokemon-list works!</p>
+<div class="mural">
+  <div *ngFor="let item of listaAPI.results">
+    <app-pokemon-list-item [item]="item"> </app-pokemon-list-item>
+  </div>
+</div>

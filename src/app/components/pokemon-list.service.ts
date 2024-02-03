@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class PokemonListService {
   constructor(private http: HttpClient) {}
 
-  private readonly API = 'https://pokeapi.co/api/v2/pokemon?limit=3';
+  private readonly API = 'https://pokeapi.co/api/v2/pokemon?limit=9';
 
   listar() {
     return this.http.get(this.API);
