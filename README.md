@@ -4,7 +4,7 @@ Todos os créditos da inspiração desse README para o <a href="https://github.c
 
 # Pokedex - Sobre o projeto
 
-Projeto para consumir a API (https://pokeapi.co/) e exibir no frontend com Angular. A aplicação terá diversos filtros, campo de busca e página com as informações de cada Pokemon.
+Projeto para consumir a API (https://pokeapi.co/) e exibir no frontend com React. A aplicação terá diversos filtros, campo de busca e página com as informações de cada Pokemon.
 
 ```json
 {
@@ -66,7 +66,7 @@ Projeto para consumir a API (https://pokeapi.co/) e exibir no frontend com Angul
 - [ ] Melhores práticas de TypeScript
 - [ ] Requisições assíncronas
 - [ ] Acessar a API e fazer um esqueleto de como vou buscar cada informação necessária
-- [ ] Componentização baseados no wireframe como esqueleto da aplicação com AngularJS
+- [ ] Componentização baseados no wireframe como esqueleto da aplicação com React
 - [ ] Trabalhar no layout, deixando amigável, responsivo e acessível
 
 #### Indo além:
