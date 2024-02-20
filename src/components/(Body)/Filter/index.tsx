@@ -42,6 +42,7 @@ const Filter = (props: cardProps) => {
           key={color.name}
           style={{ background: color.name }}
           onClick={() => props.onCardClick(color.url)}
+          className={`m-2 px-2 rounded-md cursor-pointer`}
         >
           {color.name}
         </button>
@@ -49,21 +50,33 @@ const Filter = (props: cardProps) => {
       <br />
       Eggs:
       {eggsList.map((eggs) => (
-        <button onClick={() => props.onCardClick(eggs.url)} key={eggs.name}>
+        <button
+          onClick={() => props.onCardClick(eggs.url)}
+          key={eggs.name}
+          className="m-2 px-2 rounded-md cursor-pointer bg-slate-300"
+        >
           {eggs.name}
         </button>
       ))}
       <br />
       Habitat:
       {habitatList.map((habitat) => (
-        <button onClick={() => props.onCardClick(habitat.url)} key={habitat.name}>
+        <button
+          onClick={() => props.onCardClick(habitat.url)}
+          key={habitat.name}
+          className="m-2 px-2 rounded-md cursor-pointer bg-slate-300"
+        >
           {habitat.name}
         </button>
       ))}
       <br />
       Shape:
       {shapeList.map((shape) => (
-        <button onClick={() => props.onCardClick(shape.url)} key={shape.name}>
+        <button
+          onClick={() => props.onCardClick(shape.url)}
+          key={shape.name}
+          className="m-2 px-2 rounded-md cursor-pointer bg-slate-300"
+        >
           {shape.name}
         </button>
       ))}

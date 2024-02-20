@@ -97,7 +97,6 @@ const Home = () => {
       }
     >
       <Header />
-      {listaPokemons.length} <br />
       <Filter onCardClick={cardClick} />
       <ListaCointainer lista={listaPokemonDetails} />
     </InfiniteScroll>

@@ -1,39 +1,39 @@
 .card-black {
-  background: black;
+  background: #3c4048;
 }
 
 .card-blue {
-  background: blue;
+  background: #86a7fc;
 }
 
 .card-brown {
-  background: brown;
+  background: #b67352;
 }
 
 .card-gray {
-  background: gray;
+  background: #b4b4b8;
 }
 
 .card-green {
-  background: green;
+  background: #a7d397;
 }
 
 .card-pink {
-  background: pink;
+  background: #ff90bc;
 }
 
 .card-purple {
-  background: purple;
+  background: #d0a2f7;
 }
 
 .card-red {
-  background: red;
+  background: #ff8080;
 }
 
 .card-white {
-  background: white;
+  background: #fbf9f1;
 }
 
 .card-yellow {
-  background: yellow;
+  background: #ffdd95;
 }
