@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Filter from "../components/(Body)/Filter";
 import ListaCointainer from "../components/(Body)/ListaCointainer";
 import Header from "../components/Header";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface getPokemonList {
   name: string;
@@ -12,20 +13,49 @@ interface getPokemonList {
 const Home = () => {
   const [listaPokemons, setListaPokemon] = useState<getPokemonList[]>([]);
   const [listaPokemonDetails, setListaPokemonDetails] = useState<any[]>([]);
-  const [next, setNext] = useState("");
+  const [next, setNext] = useState(
+    "https://pokeapi.co/api/v2/pokemon?offset=60&limit=60"
+  );
 
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon?limit=60").then((response) => {
       setListaPokemon(response.data.results);
       setNext(response.data.next);
+      setHasMore(true);
     });
   }, []);
 
+  //---------------------------
+
+  const [hasMore, setHasMore] = useState(false);
+
+  async function loadFunc() {
+    if (filterUrl.length === 0) {
+      await axios.get(next).then((response) => {
+        setListaPokemon(response.data.results);
+        setNext(response.data.next);
+
+        response.data.next === null ? setHasMore(false) : setHasMore(true);
+      });
+    } else {
+      setHasMore(false);
+    }
+  }
+
+  //-------------------------
+
   useEffect(() => {
-    if (listaPokemons != undefined) {
-      listaPokemons.map((pokemon) => {
+    if (listaPokemons !== undefined) {
+      listaPokemons.forEach((pokemon) => {
+        const pokeUrlReplace = pokemon.url.includes("https://pokeapi.co/api/v2/pokemon/")
+          ? pokemon.url.replace(
+              "https://pokeapi.co/api/v2/pokemon/",
+              "https://pokeapi.co/api/v2/pokemon-species/"
+            )
+          : pokemon.url;
+
         axios
-          .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`)
+          .get(`${pokeUrlReplace}`)
           .then((response) => {
             setListaPokemonDetails((pokeList) => [...pokeList, response.data]);
           })
@@ -53,25 +83,24 @@ const Home = () => {
     setFilterUrl(pokeFilterUrl);
   };
 
-  //---------------------------
-
-  const bottomScroll = async function () {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      await axios.get(`${next}`).then((response) => {
-        setNext(response.data.next);
-        setListaPokemon(response.data.results);
-      });
-    }
-  };
-  window.addEventListener("scroll", bottomScroll);
-
   return (
-    <div>
-      {filterUrl ? filterUrl : next}
+    <InfiniteScroll
+      pageStart={0}
+      loadMore={loadFunc}
+      initialLoad={false}
+      hasMore={hasMore}
+      threshold={50}
+      loader={
+        <div className="loader" key={0}>
+          Loading ...
+        </div>
+      }
+    >
       <Header />
+      {listaPokemons.length} <br />
       <Filter onCardClick={cardClick} />
       <ListaCointainer lista={listaPokemonDetails} />
-    </div>
+    </InfiniteScroll>
   );
 };
 
