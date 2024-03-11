@@ -2,6 +2,9 @@
 
 Todos os créditos da inspiração desse README para o <a href="https://github.com/douglasabnovato/huntweb-swapi?tab=readme-ov-file">@douglasabnovato</a>
 
+# Página do projeto
+<a href="https://jaaclaine.github.io/Pokedex/">https://jaaclaine.github.io/Pokedex/</a>
+
 # Pokedex - Sobre o projeto
 
 Projeto para consumir a API (https://pokeapi.co/) e exibir no frontend com React. A aplicação terá diversos filtros, campo de busca e página com as informações de cada Pokemon.
